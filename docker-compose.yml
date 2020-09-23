@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    environment: 
+      MYSQL_ROOT_PASSWORD: wrenTest
+      MYSQL_DATABASE: wrenTest
+      MYSQL_USER: wrenTest
+      MYSQL_PASSWORD: wrenTest
+    ports: 
+      - 3306:3306
+    volumes:
+      - ./database/mysql/:/var/lib/mysql/
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10M"
+        max-file: "10"
